@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Go Gaming Platform</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container {
+            padding: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+        .timer-card {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border: 1px solid #ffebee;
+        }
+        .countdown-boxes {
+            display: flex;
+            gap: 3px;
+        }
+        .box-digit {
+            background: #fff;
+            border: 1px solid #ff416c;
+            color: #ff416c;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .bet-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .btn-green { background-color: #28a745; color: white; flex: 1; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;}
+        .btn-violet { background-color: #9c27b0; color: white; flex: 1; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;}
+        .btn-red { background-color: #dc3545; color: white; flex: 1; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;}
+        
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .ball {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            margin: auto;
+            cursor: pointer;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+        }
+        .b-green { background-color: #28a745; }
+        .b-red { background-color: #dc3545; }
+        .b-purple { background: linear-gradient(45deg, #dc3545 50%, #9c27b0 50%); }
+
+        .size-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .btn-big { background-color: #ff9800; color: white; flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;}
+        .btn-small { background-color: #2196F3; color: white; flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;}
+
+        .tabs-nav {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+            background: #fff;
+            color: #666;
+        }
+        .tab.active {
+            background: #ff5252;
+            color: white;
+            font-weight: bold;
+        }
+
+        .chart-section {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .stat-table-header {
+            background-color: #ff5252;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 5px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span>&lt; HIGNICE</span>
+        <span>Win Go 1 Min</span>
+        <span>🎧</span>
+    </div>
+
+    <div class="container">
+        <div class="timer-card">
+            <div>
+                <p style="font-size: 11px; color: #666; margin-bottom: 3px;">Time remaining</p>
+                <div class="countdown-boxes">
+                    <span class="box-digit" id="t1">0</span>
+                    <span class="box-digit" id="t2">0</span>
+                    <span style="font-size: 20px; font-weight: bold; color: #ff416c; padding: 0 2px;">:</span>
+                    <span class="box-digit" id="t3">3</span>
+                    <span class="box-digit" id="t4">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bet-buttons">
+            <button class="btn-green">Green</button>
+            <button class="btn-violet">Violet</button>
+            <button class="btn-red">Red</button>
+        </div>
+
+        <div class="number-grid">
+            <div class="ball b-purple">0</div>
+            <div class="ball b-green">1</div>
+            <div class="ball b-red">2</div>
+            <div class="ball b-green">3</div>
+            <div class="ball b-red">4</div>
+            <div class="ball b-purple">5</div>
+            <div class="ball b-green">6</div>
+            <div class="ball b-green">7</div>
+            <div class="ball b-red">8</div>
+            <div class="ball b-green">9</div>
+        </div>
+
+        <div class="size-buttons">
+            <button class="btn-big">Big</button>
+            <button class="btn-small">Small</button>
+        </div>
+
+        <div class="tabs-nav">
+            <div class="tab">Game history</div>
+            <div class="tab active">Chart</div>
+        </div>
+
+        <div class="chart-section">
+            <div class="stat-table-header">
+                <span>Period</span>
+                <span>Number</span>
+            </div>
+            <div class="stat-row" style="background: #fafafa; font-weight: bold;">
+                <span>Statistic (last 100 Periods)</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let totalSeconds = 30;
+        function updateTimer() {
+            if (totalSeconds <= 0) totalSeconds = 30;
+            let secStr = totalSeconds < 10 ? "0" + totalSeconds : totalSeconds;
+            document.getElementById('t3').textContent = secStr.toString().charAt(0);
+            document.getElementById('t4').textContent = secStr.toString().charAt(1);
+            totalSeconds--;
+        }
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
